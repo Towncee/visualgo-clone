@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Array Visualization</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .array-container {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .array-box {
+      width: 60px;
+      height: 60px;
+      background: #3498db;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 18px;
+      position: relative;
+    }
+    .array-box::after {
+      content: attr(data-index);
+      position: absolute;
+      bottom: -18px;
+      font-size: 12px;
+      color: #333;
+    }
+    .controls {
+      margin-top: 20px;
+    }
+    .controls input {
+      padding: 5px;
+      margin-right: 5px;
+      width: 80px;
+    }
+    .controls button {
+      padding: 6px 10px;
+      font-weight: bold;
+      background: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔢 Array Visualization</h2>
+  <div class="controls">
+    <input type="text" id="valueInput" placeholder="Giá trị" />
+    <input type="number" id="indexInput" placeholder="Vị trí" />
+    <button onclick="insertValue()">Thêm</button>
+    <button onclick="deleteValue()">Xoá</button>
+  </div>
+  <div id="arrayContainer" class="array-container"></div>
+
+  <script>
+    let array = ['10', '20', '30', '40'];
+
+    function renderArray() {
+      const container = document.getElementById('arrayContainer');
+      container.innerHTML = '';
+      array.forEach((val, i) => {
+        const box = document.createElement('div');
+        box.className = 'array-box';
+        box.textContent = val;
+        box.setAttribute('data-index', i);
+        container.appendChild(box);
+      });
+    }
+
+    function insertValue() {
+      const val = document.getElementById('valueInput').value;
+      const idx = parseInt(document.getElementById('indexInput').value);
+      if (!val || isNaN(idx) || idx < 0 || idx > array.length) {
+        alert("Sai giá trị hoặc vị trí.");
+        return;
+      }
+      array.splice(idx, 0, val);
+      renderArray();
+    }
+
+    function deleteValue() {
+      const idx = parseInt(document.getElementById('indexInput').value);
+      if (isNaN(idx) || idx < 0 || idx >= array.length) {
+        alert("Vị trí không hợp lệ.");
+        return;
+      }
+      array.splice(idx, 1);
+      renderArray();
+    }
+
+    renderArray();
+  </script>
+</body>
+</html>

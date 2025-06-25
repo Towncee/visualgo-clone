@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisualAlgo Clone</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="top-bar">
+    <div class="left-bar">
+      <span class="logo">VISUALGO<span class="dot">.net</span></span>
+    </div>
+    <div class="right-bar">
+      <select>
+        <option>en</option>
+        <option>vi</option>
+      </select>
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="random-tip">
+    <strong>Do You Know?</strong>
+    <span>VisuAlgo có 24 thuật toán chính và hệ thống quiz kèm theo!</span>
+    <button>Next Random Tip</button>
+  </div>
+
+  <!-- TITLE -->
+  <div class="main-title">
+    <h1>VISUALGO<span class="dot">.net/en</span></h1>
+    <p>Visualising data structures and algorithms through animation</p>
+    <div class="search-box">
+      <input type="text" placeholder="Search...">
+      <select>
+        <option>en</option>
+        <option>vi</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- SPONSOR -->
+  <div class="sponsor">
+    <p><strong>VisuAlgo</strong> is funded by <span style="color:red">Optiver</span> to improve mobile support and online quizzes!</p>
+  </div>
+
+  <!-- PAGE TITLE -->
+  <h1 class="page-title">Visualizing Data Structures & Algorithms</h1>
+
+  <!-- GRID -->
+  <div class="grid-container">
+    <div class="card lightblue" onclick="window.location.href='Array.html'" style="cursor: pointer;">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=Array"></div>
+      <h2>Array</h2>
+      <div class="tags"><span>cs1010</span><span>index</span><span>fixed</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+
+    <div class="card green" onclick="location.href='sorting.html'">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=Sort"></div>
+      <h2>Sorting</h2>
+      <div class="tags"><span>bubble</span><span>select</span><span>insert</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+
+    <div class="card lime" onclick="location.href='bitmask.html'">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=Bitmask"></div>
+      <h2>Bitmask</h2>
+      <div class="tags"><span>bit</span><span>set</span><span>dp</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+
+    <div class="card darkblue" onclick="location.href='linkedlist.html'">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=List"></div>
+      <h2>Linked List</h2>
+      <div class="tags"><span>singly</span><span>doubly</span><span>circular</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+
+    <div class="card green" onclick="location.href='stack.html'">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=Stack"></div>
+      <h2>Stack</h2>
+      <div class="tags"><span>LIFO</span><span>push</span><span>pop</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+
+    <div class="card lightblue" onclick="location.href='queue.html'">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=Queue"></div>
+      <h2>Queue</h2>
+      <div class="tags"><span>FIFO</span><span>enqueue</span><span>dequeue</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+    
+    <div class="card lime" onclick="location.href='tree.html'">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=Tree"></div>
+      <h2>Binary Tree</h2>
+      <div class="tags"><span>preorder</span><span>inorder</span><span>postorder</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+
+    <div class="card darkblue" onclick="location.href='graph.html'">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=Graph"></div>
+      <h2>Graph</h2>
+      <div class="tags"><span>DFS</span><span>BFS</span><span>Dijkstra</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+
+    <div class="card green" onclick="location.href='binarysearch.html'">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=Binary+Search"></div>
+      <h2>Binary Search</h2>
+      <div class="tags"><span>sorted</span><span>divide</span><span>logN</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+
+    <div class="card lightblue" onclick="location.href='recursion.html'">
+      <div class="image-box"><img src="https://via.placeholder.com/80x50?text=Recursion"></div>
+      <h2>Recursion</h2>
+      <div class="tags"><span>base</span><span>stack</span><span>call</span></div>
+      <div class="training">Training 🔥</div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const tips = [
+      "VisuAlgo hỗ trợ 24 thuật toán cơ bản.",
+      "Bạn có thể luyện quiz để nhớ thuật toán.",
+      "Giao diện hoạt động tốt trên di động.",
+      "Hãy thử nhập dữ liệu của bạn!"
+    ];
+    let tipIndex = 0;
+    function showNextTip() {
+      tipIndex = (tipIndex + 1) % tips.length;
+      document.querySelector('.random-tip span').textContent = tips[tipIndex];
+    }
+
+    document.querySelector('.random-tip button').addEventListener('click', showNextTip);
+  </script>
+</body>
+</html>

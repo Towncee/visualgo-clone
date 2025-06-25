@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stack Visualization</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    .stack-container {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      margin-top: 30px;
+      height: 300px;
+      border: 2px dashed #ccc;
+      padding: 10px;
+      width: 120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .block {
+      width: 100px;
+      background: #3498db;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px;
+      margin: 4px 0;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .controls {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .controls input {
+      padding: 6px;
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    .controls button {
+      padding: 6px 12px;
+      font-weight: bold;
+      margin: 0 5px;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      background: #2ecc71;
+      cursor: pointer;
+    }
+
+    .controls button.pop {
+      background: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <h2>📦 Stack Visualization (LIFO)</h2>
+
+  <div class="controls">
+    <input type="text" id="stackInput" placeholder="Giá trị" />
+    <br/>
+    <button onclick="pushStack()">Push</button>
+    <button class="pop" onclick="popStack()">Pop</button>
+  </div>
+
+  <div id="stackContainer" class="stack-container"></div>
+
+  <script>
+    let stack = [];
+
+    function renderStack() {
+      const container = document.getElementById('stackContainer');
+      container.innerHTML = '';
+      stack.forEach(val => {
+        const block = document.createElement('div');
+        block.className = 'block';
+        block.textContent = val;
+        container.appendChild(block);
+      });
+    }
+
+    function pushStack() {
+      const input = document.getElementById('stackInput');
+      const value = input.value.trim();
+      if (!value) {
+        alert("Vui lòng nhập giá trị.");
+        return;
+      }
+      stack.push(value);
+      input.value = '';
+      renderStack();
+    }
+
+    function popStack() {
+      if (stack.length === 0) {
+        alert("Stack đang rỗng.");
+        return;
+      }
+      stack.pop();
+      renderStack();
+    }
+
+    renderStack();
+  </script>
+</body>
+</html>

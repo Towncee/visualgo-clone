@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recursion Visualization</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    input {
+      padding: 6px;
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 6px 12px;
+      background: #9b59b6;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .call {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>🌀 Recursion Visualization (Fibonacci)</h2>
+
+  <input type="number" id="num" placeholder="Nhập n (0-10)">
+  <button onclick="startRecursion()">Tính F(n)</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    async function fibonacci(n, depth = 0) {
+      const out = document.getElementById('output');
+      const indent = "&nbsp;".repeat(depth * 4);
+      out.innerHTML += `<div class="call">${indent}🧠 Gọi f(${n})</div>`;
+      await new Promise(r => setTimeout(r, 600));
+
+      if (n === 0 || n === 1) {
+        out.innerHTML += `<div class="call">${indent}🔙 Trả về ${n}</div>`;
+        return n;
+      }
+
+      const left = await fibonacci(n - 1, depth + 1);
+      const right = await fibonacci(n - 2, depth + 1);
+      const res = left + right;
+
+      out.innerHTML += `<div class="call">${indent}➕ f(${n - 1}) + f(${n - 2}) = ${res}</div>`;
+      return res;
+    }
+
+    async function startRecursion() {
+      const n = parseInt(document.getElementById("num").value);
+      const output = document.getElementById("output");
+      output.innerHTML = '';
+
+      if (isNaN(n) || n < 0 || n > 10) {
+        output.innerHTML = "⚠️ Nhập số từ 0 đến 10.";
+        return;
+      }
+
+      const result = await fibonacci(n);
+      output.innerHTML += `<hr><strong>✅ Kết quả: f(${n}) = ${result}</strong>`;
+    }
+  </script>
+</body>
+</html>
