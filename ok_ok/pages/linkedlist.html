@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linked List Visualization</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    .list-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .node {
+      background: #3498db;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .node::after {
+      content: "→";
+      font-weight: bold;
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+    }
+
+    .node:last-child::after {
+      content: "null";
+      right: -35px;
+      color: #aaa;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    .controls input {
+      padding: 5px;
+      margin-right: 5px;
+    }
+
+    .controls button {
+      padding: 6px 12px;
+      font-weight: bold;
+      background: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .controls button.delete {
+      background: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔗 Linked List Visualization</h2>
+  <div class="controls">
+    <input type="text" id="valueInput" placeholder="Giá trị" />
+    <button onclick="addNode()">Thêm Node</button>
+    <button class="delete" onclick="removeNode()">Xoá Cuối</button>
+  </div>
+
+  <div id="listContainer" class="list-container"></div>
+
+  <script>
+    let linkedList = [];
+
+    function renderList() {
+      const container = document.getElementById('listContainer');
+      container.innerHTML = '';
+      linkedList.forEach(val => {
+        const node = document.createElement('div');
+        node.className = 'node';
+        node.textContent = val;
+        container.appendChild(node);
+      });
+    }
+
+    function addNode() {
+      const value = document.getElementById('valueInput').value;
+      if (!value) {
+        alert("Vui lòng nhập giá trị.");
+        return;
+      }
+      linkedList.push(value);
+      renderList();
+      document.getElementById('valueInput').value = '';
+    }
+
+    function removeNode() {
+      if (linkedList.length === 0) {
+        alert("Danh sách rỗng.");
+        return;
+      }
+      linkedList.pop();
+      renderList();
+    }
+
+    renderList();
+  </script>
+  <!-- Nội dung khác ở trên -->
+
+<!-- Nút quay về trang chủ -->
+<div style="text-align: center; margin-top: 40px;">
+  <a href="/index.html" style="
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  ">⬅ Quay về trang chủ</a>
+</body>
+</html>

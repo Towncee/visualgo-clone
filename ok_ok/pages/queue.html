@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Queue Visualization</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    .queue-container {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      min-height: 60px;
+      border: 2px dashed #ccc;
+      padding: 10px;
+    }
+
+    .block {
+      background: #27ae60;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .controls {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .controls input {
+      padding: 6px;
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    .controls button {
+      padding: 6px 12px;
+      font-weight: bold;
+      margin: 0 5px;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      background: #2980b9;
+      cursor: pointer;
+    }
+
+    .controls button.dequeue {
+      background: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <h2>🚦 Queue Visualization (FIFO)</h2>
+
+  <div class="controls">
+    <input type="text" id="queueInput" placeholder="Giá trị" />
+    <br/>
+    <button onclick="enqueue()">Enqueue</button>
+    <button class="dequeue" onclick="dequeue()">Dequeue</button>
+  </div>
+
+  <div id="queueContainer" class="queue-container"></div>
+
+  <script>
+    let queue = [];
+
+    function renderQueue() {
+      const container = document.getElementById('queueContainer');
+      container.innerHTML = '';
+      queue.forEach(val => {
+        const block = document.createElement('div');
+        block.className = 'block';
+        block.textContent = val;
+        container.appendChild(block);
+      });
+    }
+
+    function enqueue() {
+      const input = document.getElementById('queueInput');
+      const value = input.value.trim();
+      if (!value) {
+        alert("Vui lòng nhập giá trị.");
+        return;
+      }
+      queue.push(value);
+      input.value = '';
+      renderQueue();
+    }
+
+    function dequeue() {
+      if (queue.length === 0) {
+        alert("Queue đang rỗng.");
+        return;
+      }
+      queue.shift(); // Remove from front
+      renderQueue();
+    }
+
+    renderQueue();
+  </script>
+  <!-- Nội dung khác ở trên -->
+
+<!-- Nút quay về trang chủ -->
+<div style="text-align: center; margin-top: 40px;">
+  <a href="/index.html" style="
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  ">⬅ Quay về trang chủ</a>
+</body>
+</html>
