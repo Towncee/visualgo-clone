@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sorting Visualization</title>
+  <link rel="stylesheet" href="../css/alg_style.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    .bar-container {
+      display: flex;
+      align-items: flex-end;
+      height: 200px;
+      gap: 5px;
+      margin-top: 20px;
+    }
+
+    .bar {
+      width: 30px;
+      background-color: #3498db;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px 4px 0 0;
+      transition: all 0.4s ease;
+    }
+
+    .bar.highlight {
+      background-color: #e67e22;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 8px 16px;
+      font-weight: bold;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h2>📊 Sorting Visualization - Bubble Sort</h2>
+  <div class="bar-container" id="barContainer"></div>
+  <button onclick="startSorting()" id="sortBtn">Start Bubble Sort</button>
+
+  <script>
+    let values = [50, 30, 70, 20, 90, 60];
+    const container = document.getElementById("barContainer");
+
+    function renderBars(arr, highlight = []) {
+      container.innerHTML = "";
+      arr.forEach((value, index) => {
+        const bar = document.createElement("div");
+        bar.className = "bar";
+        if (highlight.includes(index)) bar.classList.add("highlight");
+        bar.style.height = value * 2 + "px";
+        bar.textContent = value;
+        container.appendChild(bar);
+      });
+    }
+
+    async function startSorting() {
+      document.getElementById("sortBtn").disabled = true;
+      let arr = [...values];
+      const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+      for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
+          renderBars(arr, [j, j + 1]);
+          await delay(500);
+          if (arr[j] > arr[j + 1]) {
+            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            renderBars(arr, [j, j + 1]);
+            await delay(500);
+          }
+        }
+      }
+
+      renderBars(arr);
+      document.getElementById("sortBtn").disabled = false;
+    }
+
+    renderBars(values);
+  </script>
+  <!-- Nội dung khác ở trên -->
+
+<!-- Nút quay về trang chủ -->
+<div style="text-align: center; margin-top: 40px;">
+  <a href="../index.html" style="
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  ">⬅ Quay về trang chủ</a>
+</body>
+</html>

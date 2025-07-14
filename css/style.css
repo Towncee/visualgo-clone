@@ -1,0 +1,167 @@
+/* style.css */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    background: #2c3e50;
+    color: white;
+    padding: 10px 20px;
+}
+
+.left-bar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.left-bar .dot {
+    color: #e74c3c;
+}
+
+.right-bar select, .login-btn {
+    margin-left: 15px;
+    background: white;
+    color: #2c3e50;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.random-tip {
+    background: #ffeaa7;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-title {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.main-title h1 {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+.search-box {
+    margin-top: 15px;
+}
+
+.search-box input, .search-box select {
+    padding: 8px;
+    font-size: 1rem;
+    margin: 0 5px;
+}
+
+.sponsor {
+    background: #dff9fb;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.95rem;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 40px 0 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 0 40px 40px;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.image-box img {
+    width: 80px;
+    height: 50px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.tags span {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 8px;
+    border-radius: 5px;
+    margin: 2px;
+    display: inline-block;
+}
+
+.training {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Màu thẻ */
+.lightblue { background: #74b9ff; }
+.green     { background: #00b894; }
+.lime      { background: #a3cb38; }
+.darkblue  { background: #0984e3; }
+
+
+.top-fixed-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #1e1e2f;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Để .random-tip và .top-bar tách nhau vẫn đẹp */
+.top-bar {
+  padding: 10px 20px;
+  background-color: #2c3e50;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.random-tip {
+  background-color: #fde68a;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 20px;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.tip-btn {
+  padding: 6px 12px;
+  border: 1px solid #333;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.link {
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
